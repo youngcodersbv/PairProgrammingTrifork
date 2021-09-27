@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,13 +25,8 @@ public class HomeController {
     }
 
     @PostMapping("/")
-    public String postIndex(@RequestParam("name") String name) {
-        return "redirect:/?name=" + name;
+    public String postIndex(@ModelAttribute User user) {
+        repository.save(user);
+        return "redirect:/";
     }
-
-    @GetMapping("/other")
-    public String other() {
-        return "other";
-    }
-
 }

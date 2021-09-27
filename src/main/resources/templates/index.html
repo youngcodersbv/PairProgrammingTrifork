@@ -5,10 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<div>
-    <h1 th:text="'Hello ' + ${name} + '!'"></h1>
-</div>
-
+<h1>Users</h1>
 <table>
     <thead>
     <tr>
@@ -26,7 +23,7 @@
 
 <p><a href="/actuator">Actuator</a></p>
 <p><a href="/other">Other world</a></p>
-<form action="#" th:action="@{/}" method="post">
+<form action="#" th:action="@{/}" th:object="${user}" method="post">
     <input type="text" th:value="${name}" name="name"/>
     <input type="submit" />
 </form>
