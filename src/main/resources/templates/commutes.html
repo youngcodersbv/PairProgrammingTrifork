@@ -20,12 +20,12 @@
         <td th:text="${commute.id}">Oranges</td>
         <td th:text="${commute.home}">0.99</td>
         <td th:text="${commute.work}">0.99</td>
-        <td th:text="${commute.user}">0.99</td>
+        <td th:text="${commute.user.name}">0.99</td>
     </tr>
     </tbody>
 
 </table>
-<form action="#" th:action="@{/}" th:object="${commutes}" method="post">
+<form action="#" th:action="@{/commutes}" th:object="${commutes}" method="post">
     <input type="text" th:value="${home}" name="home"/><br />
     <input type="text" th:value="${work}" name="work"/><br />
     <input type="text" th:value="${userId}" name="userId"/><br />

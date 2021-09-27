@@ -16,8 +16,8 @@ public class User {
     @Column(nullable = false, length = 40)
     private String name;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<Commute> commutes = new HashSet<>();
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Commute> commutes;
 
     public Long getId() {
         return id;

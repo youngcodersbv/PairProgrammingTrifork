@@ -31,14 +31,15 @@ public class CommuteController {
     @PostMapping()
     public String postIndex(@ModelAttribute AddCommuteCommand commuteCommand) {
 
-        Optional<User> user = userRepository.findById(commuteCommand.getUserId());
+        Optional<User> optionalUser = userRepository.findById(commuteCommand.getUserId());
+        User user = optionalUser.get();
         Commute commute = new Commute();
         commute.setHome(commuteCommand.getHome());
         commute.setWork(commuteCommand.getWork());
-        commute.setUser(user.get());
-        user.get().getCommutes().add(commute);
-        userRepository.save(user.get());
-        return "redirect:/";
+        commute.setUser(user);
+        user.getCommutes().add(commute);
+        userRepository.save(user);
+        return "redirect:/commutes";
     }
 
 
