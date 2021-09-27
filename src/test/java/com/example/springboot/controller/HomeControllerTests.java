@@ -24,7 +24,7 @@ public class HomeControllerTests {
     @Test
     public void testModelProperties() {
         Model model = new ConcurrentModel();
-        controller.index("whatever", model);
+        controller.index(model);
         assertThat(model.getAttribute("users")).isNotNull();
     }
 
