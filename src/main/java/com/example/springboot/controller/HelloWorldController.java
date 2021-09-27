@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HelloWorldController {
 
-    @Autowired
-    private UserRepository userRepository;
-
     @GetMapping("/")
     public String index(@RequestParam(value = "name", defaultValue = "World") String name, Model model) {
         model.addAttribute("name", name);
@@ -22,9 +19,8 @@ public class HelloWorldController {
     }
 
     @PostMapping("/")
-    public String postIndex(@RequestParam("user") User user) {
-        userRepository.save(user);
-        return "redirect:/?name=" + user.getName();
+    public String postIndex(@RequestParam("name") String name) {
+        return "redirect:/?name=" + name;
     }
 
     @GetMapping("/other")
