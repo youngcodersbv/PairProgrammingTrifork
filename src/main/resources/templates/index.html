@@ -5,26 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<h1>Users</h1>
-<table>
-    <thead>
-    <tr>
-        <th th:text="ID">ID</th>
-        <th th:text="Name">Name</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="user: ${users}">
-        <td th:text="${user.id}">Oranges</td>
-        <td th:text="${user.name}">0.99</td>
-    </tr>
-    </tbody>
-</table>
-
-<p><a href="/commutes">Commutes overview</a></p>
-<form action="#" th:action="@{/}" th:object="${user}" method="post">
-    <input type="text" th:value="${name}" name="name"/>
-    <input type="submit" />
-</form>
+<div>
+    <h1>Hello User</h1>
+</div>
+<p><a href="/users">Users</a></p>
+<p><a href="/commutes">Commutes</a></p>
 </body>
 </html>
