@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<h1>Users</h1>
+<h1>Commutes</h1>
 <table>
     <thead>
     <tr>
@@ -23,7 +23,13 @@
         <td th:text="${commute.user.name}">0.99</td>
     </tr>
     </tbody>
-</table>
 
+</table>
+<form action="#" th:action="@{/commutes}" th:object="${commutes}" method="post">
+    <input type="text" th:value="${home}" name="home"/><br />
+    <input type="text" th:value="${work}" name="work"/><br />
+    <input type="text" th:value="${userId}" name="userId"/><br />
+    <input type="submit" />
+</form>
 </body>
 </html>
