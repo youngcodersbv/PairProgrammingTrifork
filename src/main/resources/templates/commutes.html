@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>Users</h1>
+<table>
+    <thead>
+    <tr>
+        <th th:text="ID">ID</th>
+        <th th:text="Home"></th>
+        <th th:text="Work"></th>
+        <th th:text="User"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="commute: ${commutes}">
+        <td th:text="${commute.id}">Oranges</td>
+        <td th:text="${commute.home}">0.99</td>
+        <td th:text="${commute.work}">0.99</td>
+        <td th:text="${commute.user.name}">0.99</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
