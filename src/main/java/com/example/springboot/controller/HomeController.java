@@ -12,8 +12,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
 
+    @Autowired
+    private UserRepository repository;
+
     @GetMapping("/")
     public String index(@RequestParam(value = "name", defaultValue = "World") String name, Model model) {
+        Iterable iter = repository.findAll();
+        model.addAttribute("users", iter);
         model.addAttribute("name", name);
         return "index";
     }

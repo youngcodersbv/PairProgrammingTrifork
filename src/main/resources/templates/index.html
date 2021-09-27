@@ -8,6 +8,22 @@
 <div>
     <h1 th:text="'Hello ' + ${name} + '!'"></h1>
 </div>
+
+<table>
+    <thead>
+    <tr>
+        <th th:text="ID">ID</th>
+        <th th:text="Name">Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user: ${users}">
+        <td th:text="${user.id}">Oranges</td>
+        <td th:text="${user.name}">0.99</td>
+    </tr>
+    </tbody>
+</table>
+
 <p><a href="/actuator">Actuator</a></p>
 <p><a href="/other">Other world</a></p>
 <form action="#" th:action="@{/}" method="post">
