@@ -8,10 +8,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 
 @SpringBootTest
-public class HelloWorldControllerTests {
+public class HomeControllerTests {
 
     @Autowired
-    private HelloWorldController controller;
+    private HomeController controller;
 
     @Test
     public void initializtionTest() {
