@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 public class HomeControllerTests {
 
     @Autowired
-    private HomeController controller;
+    private UserController controller;
 
     @Test
     public void initializtionTest() {
