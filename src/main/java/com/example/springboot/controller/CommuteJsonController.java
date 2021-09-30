@@ -3,14 +3,13 @@ package com.example.springboot.controller;
 import com.example.springboot.model.Commute;
 import com.example.springboot.repository.CommuteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 
 @RestController()
 @RequestMapping(path = "/json/commute")
@@ -20,11 +19,24 @@ public class CommuteJsonController {
     private CommuteRepository commuteRepository;
 
     @GetMapping
-    public Commute[] getAllCommuteInJson() {
+    public Commute[] getAllCommuteInJson(@RequestParam(value = "filter",required = false) String filter) {
         Iterable<Commute> commutes = commuteRepository.findAll();
 
         List<Commute> result = new ArrayList();
-        commutes.forEach(result::add);
+        StreamSupport.stream(commutes.spliterator(),false)
+                .filter(commute -> {
+                    if(filter == null) {
+                        return true;
+                    }
+                  if(commute.getHome().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
+                      return true;
+                  } else if(commute.getWork().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
+                      return true;
+                  } else {
+                      return false;
+                  }
+                })
+                .forEach(result::add);
 
         return result.toArray(new Commute[result.size()]);
     }
