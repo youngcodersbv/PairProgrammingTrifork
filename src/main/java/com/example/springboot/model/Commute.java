@@ -1,9 +1,12 @@
 package com.example.springboot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "commute", schema = "public")
+@JsonIgnoreProperties({"user"})
 public class Commute {
 
     @Id
