@@ -14,8 +14,14 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
+	/**
+	 * This method runs once when the application starts up
+	 *
+	 * @param repository
+	 * @return
+	 */
 	@Bean
-	public CommandLineRunner demo(UserRepository repository) {
+	public CommandLineRunner runAtStartOfApplicationContext(UserRepository repository) {
 		return (args) -> {
 			Iterable<User> iter = repository.findAll();
 

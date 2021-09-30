@@ -2,10 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>Hello I will be displayed in the browser title</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
 <h1>Commutes</h1>
+<div></div>
 <table>
     <thead>
     <tr>
@@ -16,11 +18,11 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="commute: ${commutes}">
-        <td th:text="${commute.id}">Oranges</td>
-        <td th:text="${commute.home}">0.99</td>
-        <td th:text="${commute.work}">0.99</td>
-        <td th:text="${commute.user.name}">0.99</td>
+    <tr th:each="x: ${xxx}">
+        <td th:text="${x.id}"></td>
+        <td th:text="${x.home}"></td>
+        <td th:text="${x.work}"></td>
+        <td th:text="${x.user.name}"></td>
     </tr>
     </tbody>
 

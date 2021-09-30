@@ -5,5 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface CommuteRepository extends CrudRepository<Commute, Long>  {
 
+    Iterable<Commute> findAll();
+
     Commute findById(long id);
 }

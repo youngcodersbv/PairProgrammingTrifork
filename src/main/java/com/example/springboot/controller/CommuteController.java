@@ -17,14 +17,14 @@ import java.util.Optional;
 public class CommuteController {
 
     @Autowired
-    private CommuteRepository repository;
+    private CommuteRepository commuteRepository;
     @Autowired
     private UserRepository userRepository;
 
     @GetMapping
     public String index(Model model) {
-        Iterable iter = repository.findAll();
-        model.addAttribute("commutes", iter);
+        Iterable iter = commuteRepository.findAll();
+        model.addAttribute("xxx", iter);
         return "commutes";
     }
 
@@ -32,13 +32,15 @@ public class CommuteController {
     public String postIndex(@ModelAttribute AddCommuteCommand commuteCommand) {
 
         Optional<User> optionalUser = userRepository.findById(commuteCommand.getUserId());
-        User user = optionalUser.get();
-        Commute commute = new Commute();
-        commute.setHome(commuteCommand.getHome());
-        commute.setWork(commuteCommand.getWork());
-        commute.setUser(user);
-        user.getCommutes().add(commute);
-        userRepository.save(user);
+        optionalUser.ifPresent((User user) -> {
+            // Work with user...
+            Commute commute = new Commute();
+            commute.setHome(commuteCommand.getHome());
+            commute.setWork(commuteCommand.getWork());
+            commute.setUser(user);
+            user.getCommutes().add(commute);
+            userRepository.save(user);
+        });
         return "redirect:/commutes";
     }
 
