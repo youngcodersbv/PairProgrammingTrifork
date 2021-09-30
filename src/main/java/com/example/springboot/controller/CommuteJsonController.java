@@ -47,7 +47,7 @@ public class CommuteJsonController {
                 })
                 // The shortest lambda using filter in Commute
                 .filter(commute -> Commute.filter(someStringValue, commute))
-                // Using a function to return a function
+                // Using a function to return a curryed function with 1 less parameter
                 .filter(createFilter(someStringValue))
                 // All "Predicate" functions accept 1 Commute parameter and return a boolean value
                 .forEach(result::add);
