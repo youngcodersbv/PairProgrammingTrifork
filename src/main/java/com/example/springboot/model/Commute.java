@@ -3,6 +3,8 @@ package com.example.springboot.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.Locale;
+import java.util.function.Predicate;
 
 @Entity
 @Table(name = "commute", schema = "public")
@@ -22,6 +24,29 @@ public class Commute {
     @ManyToOne()
     @JoinColumn(name = "user_id")
     private User user;
+
+
+    public static Predicate<Commute> createFilter(String filter) {
+        return new Predicate<Commute>() {
+            @Override
+            public boolean test(Commute commute) {
+                return filter(filter, commute);
+            }
+        };
+    }
+
+    public static boolean filter(String filter, Commute commute) {
+        if(filter == null) {
+            return true;
+        }
+        if(commute.getHome().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
+            return true;
+        } else if(commute.getWork().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public Long getId() {
         return id;

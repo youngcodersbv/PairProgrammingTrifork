@@ -11,6 +11,8 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.stream.StreamSupport;
 
+import static com.example.springboot.model.Commute.createFilter;
+
 @RestController()
 @RequestMapping(path = "/json/commute")
 public class CommuteJsonController {
@@ -24,18 +26,7 @@ public class CommuteJsonController {
 
         List<Commute> result = new ArrayList();
         StreamSupport.stream(commutes.spliterator(),false)
-                .filter(commute -> {
-                    if(filter == null) {
-                        return true;
-                    }
-                  if(commute.getHome().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
-                      return true;
-                  } else if(commute.getWork().toLowerCase(Locale.ROOT).contains(filter.toLowerCase(Locale.ROOT))) {
-                      return true;
-                  } else {
-                      return false;
-                  }
-                })
+                .filter(createFilter(filter))
                 .forEach(result::add);
 
         return result.toArray(new Commute[result.size()]);
